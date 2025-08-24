@@ -5,6 +5,7 @@ interface StateTypes {
 }
 interface PropTypes {
   jobs: string[];
+  onDelete: (index:number) => void;
 }
 
 export default class ListJob extends Component<PropTypes, StateTypes> {
@@ -20,7 +21,18 @@ export default class ListJob extends Component<PropTypes, StateTypes> {
       <div>
         {this.props.jobs.map((element, index) => (
           <div key={index}>
-            <i className="bi bi-check-circle"></i> {element}
+            <div style={{ display: "flex", justifyContent:"space-between" }}>
+              <div>
+                <input type="checkBox" />
+                {element}
+              </div>
+              <div>
+                <button>Sửa</button>
+                <button onClick={() =>
+                  this.props.onDelete(index)
+                  }>Xoá</button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
